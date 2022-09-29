@@ -25,7 +25,7 @@ class _AllQuranState extends State<AllQuran> {
       body: SafeArea(
         child: BlocBuilder<SurahCubit, SurahState>(
           builder: (context, state) {
-            return ListView.builder(git
+            return ListView.builder(
               itemCount: state.surahData.length,
               itemBuilder: (context, index) {
                 return InkWell(
