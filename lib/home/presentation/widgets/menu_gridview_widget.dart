@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/features/quran_kareem/domain/uses_case/load_surah.dart';
-import 'package:untitled/features/quran_kareem/presentation/cubit/surah_cubit.dart';
-import 'package:untitled/features/quran_kareem/presentation/quran.dart';
+
+
+import 'package:untitled/home/features/quran_kareem/presentation/cubit/surah_cubit.dart';
+
+import 'package:untitled/home/features/quran_kareem/presentation/screens/all_quran.dart';
+
+import '../../features/quran_kareem/domain/uses_case/load_surah.dart';
+import '../../features/quran_kareem/domain/uses_case/load_surah_by_page.dart';
+
 
 class MenuGridViewWidget extends StatelessWidget {
   MenuGridViewWidget({Key? key}) : super(key: key);
@@ -53,8 +59,8 @@ class MenuContainerGridView extends StatelessWidget {
         MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) =>
-                SurahCubit(loadSurahUseCase: LoadSurahUseCase())..loadSurah(),
-            child: QuranScreen(),
+                SurahCubit(loadSurahUseCase: LoadSurahUseCase(),loadSurahByPageUseCase: LoadSurahByPageUseCase())..loadSurah(),
+            child: AllQuran(),
           ),
         ),
       ),

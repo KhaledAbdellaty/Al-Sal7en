@@ -1,4 +1,4 @@
-import 'package:untitled/features/quran_kareem/domain/entity/ayah.dart';
+import 'package:untitled/home/features/quran_kareem/domain/entity/ayah.dart';
 
 class Ayahs {
   final List<AyahDataModel> ayah;
@@ -13,22 +13,24 @@ class Ayahs {
 
 class AyahDataModel extends AyahData {
   AyahDataModel({
+    required super.page,
     required super.text,
-    required super.numberInSurah,
+    required super.numberOfSurah,
     required super.juz,
     required super.manzil,
     required super.hizbQuarter,
-  //  required super.sajda,
+    //  required super.sajda,
   });
 
   factory AyahDataModel.fromJson(Map<String, dynamic> json) {
     return AyahDataModel(
+      page: json['page'],
       text: json['text'],
-      numberInSurah: json['numberInSurah'],
+      numberOfSurah: json['numberInSurah'],
       juz: json['juz'],
       manzil: json['manzil'],
       hizbQuarter: json['hizbQuarter'],
-     // sajda: json['sajda'],
+      // sajda: json['sajda'],
     );
   }
 }

@@ -1,6 +1,7 @@
 [
         {
             "number": 1,
+            "startPage": 1,
             "name": "سُورَةُ ٱلْفَاتِحَةِ",
             "englishName": "Al-Faatiha",
             "englishNameTranslation": "The Opening",
@@ -87,6 +88,8 @@
         },
         {
             "number": 2,
+            "startPage": 2,
+
             "name": "سُورَةُ البَقَرَةِ",
             "englishName": "Al-Baqara",
             "englishNameTranslation": "The Cow",
@@ -127,7 +130,7 @@
                 },
                 {
                     "number": 11,
-                    "text": "وَٱلَّذِينَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ وَبِٱلْءَاخِرَةِ هُمْ يُوقِنُونَ",
+                    "text": "وَٱلَّذِينَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ وَبِٱلْأخِرَةِ هُمْ يُوقِنُونَ",
                     "numberInSurah": 4,
                     "juz": 1,
                     "manzil": 1,

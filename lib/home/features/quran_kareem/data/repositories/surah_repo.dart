@@ -1,5 +1,5 @@
-import 'package:untitled/features/quran_kareem/data/models/surah_model.dart';
-import 'package:untitled/features/quran_kareem/data/remote_data_source.dart';
+import 'package:untitled/home/features/quran_kareem/data/models/surah_model.dart';
+import 'package:untitled/home/features/quran_kareem/data/data_resources/remote_data_source.dart';
 
 class SurahRepoImpl {
   SurahRepoImpl._();
