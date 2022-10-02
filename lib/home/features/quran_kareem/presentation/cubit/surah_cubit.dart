@@ -3,8 +3,11 @@ import 'package:meta/meta.dart';
 import 'package:untitled/home/features/quran_kareem/data/models/surah_model.dart';
 
 import 'package:untitled/home/features/quran_kareem/domain/entity/surah.dart';
-import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_surah.dart';
+import 'package:untitled/home/features/quran_kareem/domain/uses_case/add_ayah_bookmark.dart';
+import 'package:untitled/home/features/quran_kareem/domain/uses_case/get_all_bookmarks.dart';
+import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_all_surahs.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_surah_by_page.dart';
+import 'package:untitled/home/features/quran_kareem/domain/uses_case/remove_ayah_bookmark.dart';
 
 import '../../data/models/ayah_model.dart';
 import '../../domain/entity/ayah.dart';
@@ -12,16 +15,23 @@ import '../../domain/entity/ayah.dart';
 part 'surah_state.dart';
 
 class SurahCubit extends Cubit<SurahState> {
-  final LoadSurahUseCase loadSurahUseCase;
+  final LoadAllSurahsUseCase loadAllSurahsUseCase;
   final LoadSurahByPageUseCase loadSurahByPageUseCase;
+  final GetAllBookMarksUseCase getAllBookMarksUseCase;
+  final AddAyahToBookMarkUseCase addAyahToBookMarkUseCase;
+  final RemoveAyahFromBookMarkUseCase removeAyahFromBookMarkUseCase;
 
-  SurahCubit(
-      {required this.loadSurahUseCase, required this.loadSurahByPageUseCase})
-      : super(SurahState());
+  SurahCubit({
+    required this.loadAllSurahsUseCase,
+    required this.loadSurahByPageUseCase,
+    required this.getAllBookMarksUseCase,
+    required this.addAyahToBookMarkUseCase,
+    required this.removeAyahFromBookMarkUseCase,
+  }) : super(SurahState());
   final List<AyahDataModel> ayahs = [];
 
-  loadSurah() async {
-    await loadSurahUseCase().then((value) {
+  loadAllSurahs() async {
+    await loadAllSurahsUseCase().then((value) {
       emit(state.copyWith(surahData: value));
       for (var s in value) {
         //print(s);
@@ -39,5 +49,37 @@ class SurahCubit extends Cubit<SurahState> {
     final SurahData surah = SurahDataModel.fromJson2(ss['surahs']);
     emit(state.copyWith(
         ayahsData: ayahs, surah: surah, pageNo: pageNo.toString()));
+  }
+
+  loadSurahSeacrched({required String surahName}) async {
+    final surahs = await loadAllSurahsUseCase();
+    surahs.removeWhere(
+        (surah) => !surah.name.toLowerCase().contains(surahName.toLowerCase()));
+
+    emit(state.copyWith(surahData: surahs));
+  }
+
+  format({required List<AyahData> list}) {}
+
+  getAllBookMarks() async {
+    final list = await getAllBookMarksUseCase();
+    emit(state.copyWith(ayahsBookMarksList: list));
+  }
+
+  addToBookMark({required AyahData ayahData}) async {
+    final AyahDataModel ayahDataModel = AyahDataModel(
+        page: ayahData.page,
+        text: ayahData.text,
+        numberOfSurah: ayahData.numberOfSurah,
+        juz: ayahData.juz,
+        manzil: ayahData.manzil,
+        hizbQuarter: ayahData.hizbQuarter);
+    await addAyahToBookMarkUseCase(ayahDataModel);
+    emit(state.copyWith(bookMarkStatus: BookMarkStatus.add));
+  }
+
+  removeFromBookMark({required String ayahText}) async {
+    await removeAyahFromBookMarkUseCase(ayahText);
+    emit(state.copyWith(bookMarkStatus: BookMarkStatus.remove));
   }
 }

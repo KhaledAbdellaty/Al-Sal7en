@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/core/app_route.dart';
 import 'package:untitled/home/presentation/screens/home_screen.dart';
-//import 'package:untitled/test_screen.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final AppRoute appRoute;
+  const MyApp({Key? key, required this.appRoute}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      onGenerateRoute: appRoute.generateRoute,
       // home: MyWidget(),
     );
   }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:untitled/core/strings/routes.dart';
 
 import 'package:untitled/home/features/quran_kareem/presentation/cubit/surah_cubit.dart';
+import 'package:untitled/home/features/quran_kareem/presentation/screens/layout_screen.dart';
 
-import 'package:untitled/home/features/quran_kareem/presentation/screens/all_quran.dart';
+import 'package:untitled/home/features/quran_kareem/presentation/taps/all_quran/all_quran_screen.dart';
 
-import '../../features/quran_kareem/domain/uses_case/load_surah.dart';
+import '../../features/quran_kareem/domain/uses_case/load_all_surahs.dart';
 import '../../features/quran_kareem/domain/uses_case/load_surah_by_page.dart';
-
 
 class MenuGridViewWidget extends StatelessWidget {
   MenuGridViewWidget({Key? key}) : super(key: key);
@@ -54,16 +54,7 @@ class MenuContainerGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) =>
-                SurahCubit(loadSurahUseCase: LoadSurahUseCase(),loadSurahByPageUseCase: LoadSurahByPageUseCase())..loadSurah(),
-            child: AllQuran(),
-          ),
-        ),
-      ),
+      onTap: () => Navigator.pushNamed(context, quranKareemScreen),
       focusColor: Colors.amber,
       splashColor: Colors.amber,
       borderRadius: BorderRadius.circular(15),

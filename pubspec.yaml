@@ -29,13 +29,17 @@ environment:
 dependencies:
   arabic_numbers: ^1.0.0
   cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
   dio: ^4.0.6
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_svg: ^1.1.4
+  get_it: ^7.2.0
   google_fonts: ^3.0.1
+  path: 
   quran: ^1.1.2
+  sqflite: 
 
 dev_dependencies:
   flutter_lints: ^1.0.4

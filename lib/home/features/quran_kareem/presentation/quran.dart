@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_surah.dart';
+import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_all_surahs.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_surah_by_page.dart';
 import 'package:untitled/home/features/quran_kareem/presentation/cubit/surah_cubit.dart';
 import 'package:arabic_numbers/arabic_numbers.dart';
 
-class QuranScreen extends StatelessWidget {
+import '../../../../core/injection_container.dart';
+
+class SurahScreen extends StatelessWidget {
   int pageNo;
   ArabicNumbers arabicNumbers = ArabicNumbers();
-  QuranScreen({Key? key, required this.pageNo}) : super(key: key);
+  SurahScreen({Key? key, required this.pageNo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SurahCubit(
-          loadSurahByPageUseCase: LoadSurahByPageUseCase(),
-          loadSurahUseCase: LoadSurahUseCase())
-        ..loadSurahByPage(pageNo - 1),
+      create: (context) => inj<SurahCubit>()..loadSurahByPage(pageNo),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
@@ -34,7 +33,7 @@ class QuranScreen extends StatelessWidget {
                 return InteractiveViewer(
                   clipBehavior: Clip.none,
                   child: PageView.builder(
-                    controller: PageController(initialPage: pageNo - 1),
+                    controller: PageController(initialPage: pageNo),
                     onPageChanged: (value) {
                       print('page no: $value');
                       BlocProvider.of<SurahCubit>(context)
@@ -90,13 +89,10 @@ class QuranScreen extends StatelessWidget {
                                             text: ' ' +
                                                 state.ayahsData[i].text +
                                                 ' ',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               textBaseline:
                                                   TextBaseline.ideographic,
                                               height: 1.8,
-                                              // wordSpacing: 2,
-
-                                              // fontFamily: 'AmiriQuran-Regular',
                                               fontFamily: 'UthmanicHafs',
                                               fontSize: 21,
                                               leadingDistribution:
@@ -107,38 +103,42 @@ class QuranScreen extends StatelessWidget {
                                           WidgetSpan(
                                               alignment:
                                                   PlaceholderAlignment.middle,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 3),
-                                                child: Stack(
-                                                  alignment: Alignment.center,
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      'assets/images/sympol.svg',
-                                                      width: 33,
-                                                      height: 30,
-                                                    ),
-                                                    Positioned(
-                                                      child: Text(
-                                                        //'${i + 1}',
-
-                                                        arabicNumbers
-                                                            .convert(state
-                                                                .ayahsData[i]
-                                                                .numberOfSurah)
-                                                            .toString(),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        textScaleFactor: i
-                                                                    .toString()
-                                                                    .length <=
-                                                                2
-                                                            ? 1
-                                                            : .8,
+                                              child: InkWell(
+                                                onDoubleTap: () => context
+                                                    .read<SurahCubit>()
+                                                    .addToBookMark(
+                                                        ayahData:
+                                                            state.ayahsData[i]),
+                                                child: Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 3),
+                                                  child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                        'assets/images/sympol.svg',
+                                                        width: 33,
+                                                        height: 30,
                                                       ),
-                                                    )
-                                                  ],
+                                                      Positioned(
+                                                        child: Text(
+                                                          arabicNumbers
+                                                              .convert(state
+                                                                  .ayahsData[i]
+                                                                  .numberOfSurah)
+                                                              .toString(),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          textScaleFactor: i
+                                                                      .toString()
+                                                                      .length <=
+                                                                  2
+                                                              ? 1
+                                                              : .8,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
                                               )),
                                         }
