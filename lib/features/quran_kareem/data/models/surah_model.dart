@@ -1,3 +1,4 @@
+import 'package:untitled/features/azkar/domain/entity/azkar_category.dart';
 import 'package:untitled/features/quran_kareem/data/models/ayah_model.dart';
 import 'package:untitled/features/quran_kareem/domain/entity/surah.dart';
 
