@@ -8,7 +8,6 @@ import 'package:untitled/home/presentation/blocs/cubit/app_bar_cubit.dart';
 
 import '../../../../../core/widgets/my_custom_app_bar.dart';
 
-
 class QuranKareemScreen extends StatelessWidget {
   const QuranKareemScreen({Key? key}) : super(key: key);
 
@@ -23,20 +22,17 @@ class QuranKareemScreen extends StatelessWidget {
           create: (context) => inj<SurahCubit>()..loadAllSurahs(),
         ),
       ],
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            appBar: MyCustomAppBar(),
-            body: TabBarView(children: [
-              AllQuran(),
-              Center(
-                child: Text('Second Screen'),
-              ),
-              BookMarksScreen(),
-            ]),
-          ),
+      child: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: MyCustomAppBar(),
+          body: TabBarView(children: [
+            AllQuran(),
+            Center(
+              child: Text('Second Screen'),
+            ),
+            BookMarksScreen(),
+          ]),
         ),
       ),
     );

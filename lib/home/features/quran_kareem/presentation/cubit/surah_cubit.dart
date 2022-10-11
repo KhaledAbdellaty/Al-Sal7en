@@ -1,14 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/home/features/quran_kareem/data/models/surah_model.dart';
-
 import 'package:untitled/home/features/quran_kareem/domain/entity/surah.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/add_ayah_bookmark.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/get_all_bookmarks.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_all_surahs.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_surah_by_page.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/remove_ayah_bookmark.dart';
-
 import '../../data/models/ayah_model.dart';
 import '../../domain/entity/ayah.dart';
 
@@ -34,7 +32,6 @@ class SurahCubit extends Cubit<SurahState> {
     await loadAllSurahsUseCase().then((value) {
       emit(state.copyWith(surahData: value));
       for (var s in value) {
-        //print(s);
         emit(state.copyWith(surah: s));
       }
     });
@@ -76,10 +73,18 @@ class SurahCubit extends Cubit<SurahState> {
         hizbQuarter: ayahData.hizbQuarter);
     await addAyahToBookMarkUseCase(ayahDataModel);
     emit(state.copyWith(bookMarkStatus: BookMarkStatus.add));
+    getAllBookMarks();
   }
 
   removeFromBookMark({required String ayahText}) async {
     await removeAyahFromBookMarkUseCase(ayahText);
     emit(state.copyWith(bookMarkStatus: BookMarkStatus.remove));
+    getAllBookMarks();
+  }
+
+  handleToBookMark(String ss) {
+    emit(state.copyWith(
+      isBookMarked: true,
+    ));
   }
 }

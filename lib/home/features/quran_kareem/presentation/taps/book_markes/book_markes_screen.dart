@@ -9,7 +9,6 @@ class BookMarksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (context) => inj<SurahCubit>()..getAllBookMarks(),
       child: BlocBuilder<SurahCubit, SurahState>(

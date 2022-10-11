@@ -12,12 +12,11 @@ class SurahDataModel extends SurahData {
   });
 
   factory SurahDataModel.fromJson(Map<String, dynamic> json) {
-
     final List<dynamic> ayahFromJson = json['ayahs'];
     final List<AyahDataModel> ayahData = [];
     ayahFromJson.forEach(
       (element) => ayahData.add(AyahDataModel.fromJson(element)),
-     );
+    );
 
     return SurahDataModel(
         name: json['name'],
@@ -27,11 +26,8 @@ class SurahDataModel extends SurahData {
         englishNameTranslation: json['englishNameTranslation'],
         revelationType: json['revelationType']);
   }
-factory SurahDataModel.fromJson2(Map<String, dynamic> json) {
-
-
+  factory SurahDataModel.fromJson2(Map<String, dynamic> json) {
     final List<AyahDataModel> ayahData = [];
- 
 
     return SurahDataModel(
         name: json['name'],
@@ -41,6 +37,4 @@ factory SurahDataModel.fromJson2(Map<String, dynamic> json) {
         englishNameTranslation: json['englishNameTranslation'],
         revelationType: json['revelationType']);
   }
- 
-
 }

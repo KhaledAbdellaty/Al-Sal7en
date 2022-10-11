@@ -5,6 +5,8 @@ import 'package:untitled/core/sqflite_database/database_services.dart';
 
 import '../../../../../core/strings/constat_strings.dart';
 
+
+
 class QuranLocalDataSource implements DatabaseServices {
   QuranLocalDataSource._();
   static final QuranLocalDataSource instance = QuranLocalDataSource._();

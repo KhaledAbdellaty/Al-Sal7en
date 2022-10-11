@@ -8,6 +8,7 @@ enum BookMarkStatus {
 
 @immutable
 class SurahState {
+  final bool isBookMarked;
   final List<SurahData> surahData;
   final List<AyahData> ayahsData;
   final List<AyahData> ayahsBookMarksList;
@@ -23,6 +24,7 @@ class SurahState {
       this.index = 0,
       this.pageNo = '',
       this.bookMarkStatus = BookMarkStatus.none,
+      this.isBookMarked = false,
       this.surah = const SurahData(
         ayahData: [],
         name: '',
@@ -39,6 +41,8 @@ class SurahState {
     String? pageNo,
     SurahData? surah,
     BookMarkStatus? bookMarkStatus,
+   bool? isBookMarked,
+
   }) {
     return SurahState(
       surahData: surahData ?? this.surahData,
@@ -48,6 +52,7 @@ class SurahState {
       pageNo: pageNo ?? this.pageNo,
       surah: surah ?? this.surah,
       bookMarkStatus: bookMarkStatus ?? this.bookMarkStatus,
+      isBookMarked:  isBookMarked ?? this.isBookMarked
     );
   }
 }

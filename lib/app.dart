@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:untitled/core/app_route.dart';
-import 'package:untitled/home/presentation/screens/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   final AppRoute appRoute;
@@ -11,6 +11,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: appRoute.generateRoute,
+      localizationsDelegates: const [
+        // delegate from flutter_localization
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ar', 'AE'),
+      ],
       // home: MyWidget(),
     );
   }
