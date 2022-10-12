@@ -1,15 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/home/features/hadeth/presentation/ui/Screens/seach_screen.dart';
-
+import 'package:untitled/core/strings/routes.dart';
 import '../../bloc/book/book_cubit.dart';
-import '../../bloc/chapter/chapter_cubit.dart';
 import '../widget/loding_widget.dart';
-import 'chapter_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HadithHomeScreen extends StatelessWidget {
+  const HadithHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +15,7 @@ class HomeScreen extends StatelessWidget {
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SearchScreen(),
-                  ),
-                );
-              },
+              onPressed: () => Navigator.pushNamed(context, searchHadithScreen),
               icon: const Icon(Icons.search_rounded),
             )
           ],
@@ -62,14 +51,14 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    BlocProvider.of<ChapterCubit>(context)
-                        .getchaptar(state.books[index].bookSlug);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChapterScreen(
-                              bookName: state.books[index].bookName),
-                        ));
+                    Navigator.pushNamed(
+                      context,
+                      chapterScreen,
+                      arguments: <String, dynamic>{
+                        'bookName': state.books[index].bookName,
+                        'bookSlug': state.books[index].bookSlug,
+                      },
+                    );
                   },
                 );
               },
@@ -77,7 +66,7 @@ class HomeScreen extends StatelessWidget {
           );
         } else {
           return const Center(
-            child: Text("sorre, no date"),
+            child: Text("something went wrong"),
           );
         }
       },

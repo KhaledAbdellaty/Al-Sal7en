@@ -64,8 +64,8 @@ Future<void> init() async {
   // inj.registerLazySingleton(() => GetAsmaAllahUseCase(asmaAllahRepo: inj()));
 
   // replsitory //
-  // inj.registerLazySingleton<HadithRepo>(() => HadithRepImp(
-  //     networkInfo: inj(), remotdateSurse: inj(), localDataSurc: inj()));
+  inj.registerLazySingleton<HadithRepo>(
+      () => HadithRepImp(networkInfo: inj(), remotdateSurse: inj()));
 
   // inj.registerLazySingleton<AsmaAllahRepo>(
   //     () => AsmaAllahRepoImp(remotahDataSurc: inj()));
