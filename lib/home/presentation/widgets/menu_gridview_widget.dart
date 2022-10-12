@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/core/strings/routes.dart';
 
-
 class MenuGridViewWidget extends StatelessWidget {
   MenuGridViewWidget({Key? key}) : super(key: key);
-  List<String> ss = [
-    'assets/images/night.png',
-    'assets/images/day.png',
-    'assets/images/quran_kareem.png',
-    'assets/images/Component 2.png',
-    'assets/images/contact_us.png',
-    'assets/images/Component 3.png',
-  ];
+  Map<String, String> ss = {
+    'أذكار المساء': 'assets/images/night.png',
+    'أحاديث': 'assets/images/day.png',
+    'القرأن الكريم': 'assets/images/quran_kareem.png',
+    'قصص الأنبياء': 'assets/images/Component 2.png',
+    'تواصل معنا': 'assets/images/contact_us.png',
+    'أدعية': 'assets/images/Component 3.png',
+  };
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       // color: Colors.red,
       height: 413,
       width: 269,
@@ -28,7 +27,13 @@ class MenuGridViewWidget extends StatelessWidget {
         itemCount: 6,
         padding: const EdgeInsets.all(0),
         itemBuilder: (context, index) => MenuContainerGridView(
-          backGroundAsset: ss[index],
+          backGroundAsset: ss.values.elementAt(index),
+          title: ss.keys.elementAt(index),
+          onTap: () => index == 1
+              ? Navigator.pushNamed(context, hadithHomeScreen)
+              : index == 2
+                  ? Navigator.pushNamed(context, quranKareemScreen)
+                  : null,
         ),
       ),
     );
@@ -38,15 +43,19 @@ class MenuGridViewWidget extends StatelessWidget {
 class MenuContainerGridView extends StatelessWidget {
   const MenuContainerGridView({
     required this.backGroundAsset,
-    this.ns = true,
+    required this.title,
+    required this.onTap,
+    //  this.ns = true,
     Key? key,
   }) : super(key: key);
   final String backGroundAsset;
-  final bool ns;
+  final String title;
+  final VoidCallback onTap;
+  // final bool ns;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, quranKareemScreen),
+      onTap: onTap,
       focusColor: Colors.amber,
       splashColor: Colors.amber,
       borderRadius: BorderRadius.circular(15),
@@ -57,10 +66,10 @@ class MenuContainerGridView extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Text(
-            'أذكار المساء',
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               fontFamily: 'georgia',
-              fontSize: 16,
+              fontSize: 20,
               color: Color(0xffFFFFFF),
               fontWeight: FontWeight.w500,
             ),

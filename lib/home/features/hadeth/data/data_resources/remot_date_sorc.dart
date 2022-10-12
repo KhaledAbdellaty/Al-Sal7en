@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import '../../../../../core/error/exception.dart';
 import '../books.dart';
@@ -61,7 +60,7 @@ class RemotDateSurseWithDio implements RemotdateSurse {
       "chapter": chapterNumber,
     });
     if (response.statusCode == 200) {
-      final allHadith = await HadithChapterInfoModel.fromJson(response.data);
+      final allHadith = HadithChapterInfoModel.fromJson(response.data);
       return allHadith;
     } else if (response.statusCode == 404) {
       throw NoDateException();
@@ -87,7 +86,7 @@ class RemotDateSurseWithDio implements RemotdateSurse {
         throw NoDateException();
       }
     } else {
-        print("===ServerException===");
+      print("===ServerException===");
 
       throw ServerException();
     }

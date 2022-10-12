@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,8 +6,8 @@ import '../../bloc/search/search_cubit.dart';
 import '../widget/build_List_viwe_widget.dart';
 import '../widget/loding_widget.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+class SearchHadithScreen extends StatelessWidget {
+  const SearchHadithScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class SearchScreen extends StatelessWidget {
               ),
               IconButton(
                   onPressed: () {
-                 //   BlocProvider.of<SaveHadithCubit>(context).gethadithDB();
+                    //   BlocProvider.of<SaveHadithCubit>(context).gethadithDB();
                   },
                   icon: Icon(Icons.leaderboard)),
               buildBloc(context),

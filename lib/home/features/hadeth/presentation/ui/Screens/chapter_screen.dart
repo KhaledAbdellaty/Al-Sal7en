@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/core/strings/routes.dart';
 
 import '../../bloc/chapter/chapter_cubit.dart';
 import '../../bloc/hadith/hadith_cubit.dart';
@@ -78,24 +79,30 @@ class ChapterScreen extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      BlocProvider.of<HadithCubit>(context)
-                          .datawithPage
-                          .clear();
-                      BlocProvider.of<HadithCubit>(context).getHadith(
-                          BookSlug: state.chapters.chapters[index].bookSlug,
-                          chapterNumber:
-                              state.chapters.chapters[index].chapterNumber);
+                      // BlocProvider.of<HadithCubit>(context)
+                      //     .datawithPage
+                      //     .clear();
+                      // BlocProvider.of<HadithCubit>(context).getHadith(
+                      //     BookSlug: state.chapters.chapters[index].bookSlug,
+                      //     chapterNumber:
+                      //         state.chapters.chapters[index].chapterNumber);
 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HadithScreen(
-                              chapter: state.chapters.chapters[index],
-                              bookSlug: state.chapters.chapters[index].bookSlug,
-                              chapterNumber:
-                                  state.chapters.chapters[index].chapterNumber,
-                            ),
-                          ));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => HadithScreen(
+                      //         chapter: state.chapters.chapters[index],
+                      //         bookSlug: state.chapters.chapters[index].bookSlug,
+                      //         chapterNumber:
+                      //             state.chapters.chapters[index].chapterNumber,
+                      //       ),
+                      //     ));
+
+                      Navigator.pushNamed(context, hadithDetailsScreen,arguments: <String,dynamic>{
+                        'chapter':state.chapters.chapters[index],
+                        'bookSlug':state.chapters.chapters[index].bookSlug,
+                        'chapterNumber':state.chapters.chapters[index].chapterNumber,
+                      });
                     },
                   ),
                 );
