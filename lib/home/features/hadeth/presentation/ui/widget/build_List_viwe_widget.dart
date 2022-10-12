@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entites/search_hadith.dart';
-import '../../bloc/save_hadith/save_hadith_cubit.dart';
 import '../../bloc/search/search_cubit.dart';
 import 'loding_widget.dart';
 
@@ -54,8 +53,8 @@ class _BuildListViewWidgetState extends State<BuildListViewWidget> {
         
           IconButton(
               onPressed: () {
-                BlocProvider.of<SaveHadithCubit>(context)
-                    .saveHadith(searchHadith);
+               // BlocProvider.of<SaveHadithCubit>(context)
+               //     .saveHadith(searchHadith);
               },
               icon: Icon(Icons.star)),
           information(date: searchHadith.elRawi, titel: " : الراوي "),

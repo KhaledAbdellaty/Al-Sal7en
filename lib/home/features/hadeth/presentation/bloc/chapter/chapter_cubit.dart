@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../../../core/error/massaege_failure.dart';
 import '../../../domain/entites/chapter.dart';
 import '../../../domain/use_cases/get_chaptir_use_case.dart';
 

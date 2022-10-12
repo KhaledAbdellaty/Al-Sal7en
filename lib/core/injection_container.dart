@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/add_ayah_bookmark.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/get_all_bookmarks.dart';
 import 'package:untitled/home/features/quran_kareem/domain/uses_case/load_all_surahs.dart';
@@ -21,6 +22,7 @@ import '../home/features/hadeth/presentation/bloc/chapter/chapter_cubit.dart';
 import '../home/features/hadeth/presentation/bloc/hadith/hadith_cubit.dart';
 import '../home/features/hadeth/presentation/bloc/save_hadith/save_hadith_cubit.dart';
 import '../home/features/hadeth/presentation/bloc/search/search_cubit.dart';
+import 'internet_check/network_info.dart';
 
 final inj = GetIt.instance;
 Future<void> init() async {
@@ -41,31 +43,29 @@ Future<void> init() async {
   inj.registerLazySingleton(() => RemoveAyahFromBookMarkUseCase());
   inj.registerLazySingleton(() => GetAllBookMarksUseCase());
 
-  //////////////////////// 
+  ////////////////////////
   ///// bloc //
   inj.registerFactory(() => BookCubit(getHadithBookUse: inj()));
   inj.registerFactory(() => ChapterCubit(getChaptirUseCase: inj()));
   inj.registerFactory(() => HadithCubit(getHadithUseCase: inj()));
   inj.registerFactory(() => SearchCubit(searchHadithUseCases: inj()));
-  inj.registerFactory(() => SaveHadithCubit(saveHadithUseCase: inj(),getHadithLocalUseCase: inj()));
-  
-  //inj.registerFactory(() => AsmaAllahCubit(getAsmaAllahUseCase: inj()));
+  // inj.registerFactory(() =>
+  //     SaveHadithCubit(saveHadithUseCase: inj(), getHadithLocalUseCase: inj()));
 
+  //inj.registerFactory(() => AsmaAllahCubit(getAsmaAllahUseCase: inj()));
 
   // usecases //
   inj.registerLazySingleton(() => GetBookUseCase(hadithRepo: inj()));
   inj.registerLazySingleton(() => GetChaptirUseCase(hadithBookRepo: inj()));
   inj.registerLazySingleton(() => SearchHadithUseCases(hadithRepo: inj()));
   inj.registerLazySingleton(() => GetHadithUseCase(hadithRepo: inj()));
-  inj.registerLazySingleton(() => SaveHadithUseCase(hadithRepo: inj()));
-  inj.registerLazySingleton(() => GetHadithLocalUseCase(hadithRepol:  inj()));
- // inj.registerLazySingleton(() => GetAsmaAllahUseCase(asmaAllahRepo: inj()));
+  // inj.registerLazySingleton(() => SaveHadithUseCase(hadithRepo: inj()));
+  // inj.registerLazySingleton(() => GetHadithLocalUseCase(hadithRepol: inj()));
+  // inj.registerLazySingleton(() => GetAsmaAllahUseCase(asmaAllahRepo: inj()));
 
   // replsitory //
   // inj.registerLazySingleton<HadithRepo>(() => HadithRepImp(
-  //     networkInfo: inj(), remotdateSurse: inj()
-      
-  //     , localDataSurc: inj()));
+  //     networkInfo: inj(), remotdateSurse: inj(), localDataSurc: inj()));
 
   // inj.registerLazySingleton<AsmaAllahRepo>(
   //     () => AsmaAllahRepoImp(remotahDataSurc: inj()));
@@ -79,9 +79,9 @@ Future<void> init() async {
   //inj.registerLazySingleton<LocalDataSurc>(() => LocalDataSurcWithSQFLIT());
 
 // Core //
- // inj.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(inj()));
+  inj.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(inj()));
 
 // External //
 
-  //inj.registerLazySingleton(() => InternetConnectionChecker());
+  inj.registerLazySingleton(() => InternetConnectionChecker());
 }

@@ -3,6 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/error/failures.dart';
+import '../../../../../../core/error/massaege_failure.dart';
 import '../../../domain/entites/hadith.dart';
 import '../../../domain/use_cases/get_hadith_use_cuse.dart';
 

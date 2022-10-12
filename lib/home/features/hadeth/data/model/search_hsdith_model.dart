@@ -1,5 +1,6 @@
 
 
+import '../../../../../core/constans.dart';
 import '../../domain/entites/search_hadith.dart';
 
 class SearchHadithModel extends SearchHadith {

@@ -1,5 +1,8 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../../core/error/exception.dart';
+import '../../../../../core/error/failures.dart';
+import '../../../../../core/internet_check/network_info.dart';
 import '../../domain/entites/hadith.dart';
 import '../../domain/entites/hadith_book.dart';
 import '../../domain/entites/search_hadith.dart';
@@ -15,7 +18,7 @@ class HadithRepImp implements HadithRepo {
   HadithRepImp({
     required this.networkInfo,
     required this.remotdateSurse,
-   // required this.localDataSurc,
+    // required this.localDataSurc,
   });
 
   @override
@@ -84,23 +87,23 @@ class HadithRepImp implements HadithRepo {
     }
   }
 
-  @override
-  Future<Either<Failur, Unit>> setHadithLocal(SearchHadith searchHadith) async {
-    try {
-      await localDataSurc.setHadithLocal(searchHadith);
-      return Right(unit);
-    } catch (e) {
-      return left(ServerFailure());
-    }
-  }
+  // @override
+  // Future<Either<Failur, Unit>> setHadithLocal(SearchHadith searchHadith) async {
+  //   try {
+  //     await localDataSurc.setHadithLocal(searchHadith);
+  //     return Right(unit);
+  //   } catch (e) {
+  //     return left(ServerFailure());
+  //   }
+  // }
 
-  Future<Either<Failur, List<SearchHadith>>> getHadithLocal() async {
-    try {
-      final data = await localDataSurc.getDataLocal();
+  // Future<Either<Failur, List<SearchHadith>>> getHadithLocal() async {
+  //   try {
+  //     final data = await localDataSurc.getDataLocal();
 
-      return Right(data);
-    } catch (e) {
-      return Left(ServerFailure());
-    }
-  }
+  //     return Right(data);
+  //   } catch (e) {
+  //     return Left(ServerFailure());
+  //   }
+  // }
 }
