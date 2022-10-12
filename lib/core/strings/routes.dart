@@ -5,3 +5,4 @@ const String hadithHomeScreen = '/hadith_home_screen';
 const String hadithDetailsScreen = '/hadith_details_screen';
 const String chapterScreen = '/chapter_screen';
 const String searchHadithScreen = '/search_hadith_screen';
+const String asmaAlahScreen = '/asma_allah_screen';

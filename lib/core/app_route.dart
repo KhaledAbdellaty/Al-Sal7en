@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/core/injection_container.dart';
 import 'package:untitled/core/strings/routes.dart';
+import 'package:untitled/home/features/asma_alah/prisntion/bloc/asma_allah/asma_allah_cubit.dart';
+import 'package:untitled/home/features/asma_alah/prisntion/ui/asma_allah_screen.dart';
 import 'package:untitled/home/features/hadeth/presentation/bloc/book/book_cubit.dart';
 import 'package:untitled/home/features/hadeth/presentation/ui/Screens/chapter_screen.dart';
 import 'package:untitled/home/features/hadeth/presentation/ui/Screens/hadith_home_screen.dart';
@@ -78,6 +80,12 @@ class AppRoute {
             ),
           ),
         );
+      case asmaAlahScreen:
+        return MaterialPageRoute(
+            builder: ((context) => BlocProvider(
+                  create: (context) => inj<AsmaAllahCubit>()..getAsmaAllah(),
+                  child: AsmaAllahScreen(),
+                )));
     }
   }
 }
