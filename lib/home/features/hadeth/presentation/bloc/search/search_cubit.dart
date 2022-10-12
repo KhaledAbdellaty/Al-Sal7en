@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../../../../core/error/massaege_failure.dart';
 import '../../../domain/entites/search_hadith.dart';
 import '../../../domain/use_cases/searth_hadith.dart';
 

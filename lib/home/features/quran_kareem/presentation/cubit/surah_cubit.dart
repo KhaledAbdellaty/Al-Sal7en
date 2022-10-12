@@ -29,8 +29,11 @@ class SurahCubit extends Cubit<SurahState> {
   final List<AyahDataModel> ayahs = [];
 
   loadAllSurahs() async {
+    emit(state.copyWith(loadingStatus: LoadingStatus.loading));
+
     await loadAllSurahsUseCase().then((value) {
-      emit(state.copyWith(surahData: value));
+      emit(state.copyWith(
+          surahData: value, loadingStatus: LoadingStatus.loaded));
       for (var s in value) {
         emit(state.copyWith(surah: s));
       }
@@ -55,8 +58,6 @@ class SurahCubit extends Cubit<SurahState> {
 
     emit(state.copyWith(surahData: surahs));
   }
-
-  format({required List<AyahData> list}) {}
 
   getAllBookMarks() async {
     final list = await getAllBookMarksUseCase();

@@ -24,7 +24,7 @@ class SearchScreen extends StatelessWidget {
               ),
               IconButton(
                   onPressed: () {
-                    BlocProvider.of<SaveHadithCubit>(context).gethadithDB();
+                 //   BlocProvider.of<SaveHadithCubit>(context).gethadithDB();
                   },
                   icon: Icon(Icons.leaderboard)),
               buildBloc(context),

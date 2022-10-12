@@ -1,9 +1,9 @@
-import 'package:aqra_application/core/error/failures.dart';
-import 'package:aqra_application/core/error/streing/textError.dart';
-
 
  
-  String massaeFailure(Failur failur) {
+  import 'failures.dart';
+import 'streing/textError.dart';
+
+String massaeFailure(Failur failur) {
     switch (failur.runtimeType) {
       case ServerFailure:
         return SERVER_FAILURE;

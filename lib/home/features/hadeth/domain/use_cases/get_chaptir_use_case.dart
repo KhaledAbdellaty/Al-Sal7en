@@ -1,6 +1,7 @@
 
 import 'package:dartz/dartz.dart';
 
+import '../../../../../core/error/failures.dart';
 import '../entites/chapter.dart';
 import '../hadith_rep/hadith_book_rep.dart';
 

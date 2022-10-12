@@ -40,6 +40,7 @@ dependencies:
   flutter_svg: ^1.1.4
   get_it: ^7.2.0
   google_fonts: ^3.0.1
+  internet_connection_checker: 
   localization: ^2.1.0
   path: null
   quran: ^1.1.2

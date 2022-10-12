@@ -6,8 +6,15 @@ enum BookMarkStatus {
   remove,
 }
 
+enum LoadingStatus {
+  none,
+  loading,
+  loaded,
+}
+
 @immutable
 class SurahState {
+  final LoadingStatus loadingStatus;
   final bool isBookMarked;
   final List<SurahData> surahData;
   final List<AyahData> ayahsData;
@@ -25,6 +32,7 @@ class SurahState {
       this.pageNo = '',
       this.bookMarkStatus = BookMarkStatus.none,
       this.isBookMarked = false,
+      this.loadingStatus = LoadingStatus.none,
       this.surah = const SurahData(
         ayahData: [],
         name: '',
@@ -34,6 +42,7 @@ class SurahState {
         revelationType: '',
       )});
   SurahState copyWith({
+    LoadingStatus? loadingStatus,
     List<SurahData>? surahData,
     List<AyahData>? ayahsData,
     final List<AyahData>? ayahsBookMarksList,
@@ -41,18 +50,17 @@ class SurahState {
     String? pageNo,
     SurahData? surah,
     BookMarkStatus? bookMarkStatus,
-   bool? isBookMarked,
-
+    bool? isBookMarked,
   }) {
     return SurahState(
-      surahData: surahData ?? this.surahData,
-      ayahsData: ayahsData ?? this.ayahsData,
-      ayahsBookMarksList: ayahsBookMarksList ?? this.ayahsBookMarksList,
-      index: index ?? this.index,
-      pageNo: pageNo ?? this.pageNo,
-      surah: surah ?? this.surah,
-      bookMarkStatus: bookMarkStatus ?? this.bookMarkStatus,
-      isBookMarked:  isBookMarked ?? this.isBookMarked
-    );
+      loadingStatus: loadingStatus ?? this.loadingStatus,
+        surahData: surahData ?? this.surahData,
+        ayahsData: ayahsData ?? this.ayahsData,
+        ayahsBookMarksList: ayahsBookMarksList ?? this.ayahsBookMarksList,
+        index: index ?? this.index,
+        pageNo: pageNo ?? this.pageNo,
+        surah: surah ?? this.surah,
+        bookMarkStatus: bookMarkStatus ?? this.bookMarkStatus,
+        isBookMarked: isBookMarked ?? this.isBookMarked);
   }
 }

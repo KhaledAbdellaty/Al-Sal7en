@@ -11,10 +11,11 @@ class SaveHadithInitial extends SaveHadithState {}
 
 class SaveHadithDoneState extends SaveHadithState {
   const SaveHadithDoneState({required this.hadiths});
-   final List<SearchHadith> hadiths;
+  final List<SearchHadith> hadiths;
 }
 
 class SaveHadithLodingState extends SaveHadithState {}
+
 class SaveHadithErorrState extends SaveHadithState {}
 
 class SaveHadithNoDataState extends SaveHadithState {}

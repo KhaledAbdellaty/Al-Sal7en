@@ -1,6 +1,6 @@
-
 import 'package:dartz/dartz.dart';
 
+import '../../../../../core/error/failures.dart';
 import '../entites/chapter.dart';
 import '../entites/hadith.dart';
 import '../entites/hadith_book.dart';
@@ -15,6 +15,6 @@ abstract class HadithRepo {
     required String chapterNumber,
     int? current_page,
   });
-  Future<Either<Failur, Unit>> setHadithLocal(SearchHadith searchHadith);
-  Future<Either<Failur, List<SearchHadith>>> getHadithLocal();
+  // Future<Either<Failur, Unit>> setHadithLocal(SearchHadith searchHadith);
+  // Future<Either<Failur, List<SearchHadith>>> getHadithLocal();
 }
