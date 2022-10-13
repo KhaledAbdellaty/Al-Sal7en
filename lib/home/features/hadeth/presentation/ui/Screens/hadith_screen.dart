@@ -21,6 +21,7 @@ class HadithScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // test///
     return Scaffold(
       appBar: AppBar(
         title: Text(chapter.chapterArabic),
@@ -41,7 +42,7 @@ class HadithScreen extends StatelessWidget {
           );
         } else if (state is HadithDoneState) {
           return BuildPageViweWidget(
-            data: state.hadithChapterInfo,
+            data: state.hadithChapterInfo.toSet(),
             bookSlug: bookSlug,
             chapterNumber: chapterNumber,
           );
@@ -72,7 +73,7 @@ class HadithScreen extends StatelessWidget {
         } else {
           var data = BlocProvider.of<HadithCubit>(context).datawithPage;
           return BuildPageViweWidget(
-            data: data,
+            data: data.toSet(),
             bookSlug: bookSlug,
             chapterNumber: chapterNumber,
           );

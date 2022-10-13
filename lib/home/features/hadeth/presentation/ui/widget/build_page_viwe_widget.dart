@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +12,7 @@ class BuildPageViweWidget extends StatefulWidget {
     required this.bookSlug,
     required this.chapterNumber,
   });
-  List<HadithChapterInfo> data;
+  Set<HadithChapterInfo> data;
   String chapterNumber;
   String bookSlug;
 
@@ -24,38 +23,42 @@ class BuildPageViweWidget extends StatefulWidget {
 class _BuildPageViweWidgetState extends State<BuildPageViweWidget> {
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      controller: BlocProvider.of<HadithCubit>(context).controller,
-      itemCount: widget.data.length + 1,
-      onPageChanged: (value) {
-        if (value + 1 >= widget.data.length &&
-            widget.data.first.hadiths.lastPage > widget.data.length) {
-          BlocProvider.of<HadithCubit>(context).getHadith(
-              BookSlug: widget.bookSlug,
-              chapterNumber: widget.chapterNumber,
-              current_page: value + 1);
-        }
-      },
-      itemBuilder: (context, index) {
-        if (index < widget.data.length) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text("صفحة:" + widget.data[index].hadiths.currentPage.toString()),
-              buildListViwe(widget.data[index].hadiths.data),
-            ],
-          );
-        } else {
-          if (widget.data[index - 1].hadiths.currentPage ==
-              widget.data[index - 1].hadiths.lastPage) {
-            return Center(child: Text("انتهى الكتاب"));
-          } else {
-            return Center(
-              child: LodingWidget(),
-            );
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: PageView.builder(
+        controller: BlocProvider.of<HadithCubit>(context).controller,
+        itemCount: widget.data.length + 1,
+        onPageChanged: (value) {
+          if (value + 1 >= widget.data.length &&
+              widget.data.first.hadiths.lastPage > widget.data.length) {
+            BlocProvider.of<HadithCubit>(context).getHadith(
+                BookSlug: widget.bookSlug,
+                chapterNumber: widget.chapterNumber,
+                current_page: value + 1);
           }
-        }
-      },
+        },
+        itemBuilder: (context, index) {
+          if (index < widget.data.length) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text("صفحة:" +
+                    widget.data.toList()[index].hadiths.currentPage.toString()),
+                buildListViwe(widget.data.toList()[index].hadiths.data),
+              ],
+            );
+          } else {
+            if (widget.data.toList()[index - 1].hadiths.currentPage ==
+                widget.data.toList()[index - 1].hadiths.lastPage) {
+              return Center(child: Text("انتهى الكتاب"));
+            } else {
+              return Center(
+                child: LodingWidget(),
+              );
+            }
+          }
+        },
+      ),
     );
   }
 

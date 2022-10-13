@@ -7,7 +7,7 @@ class MenuGridViewWidget extends StatelessWidget {
     'أذكار المساء': 'assets/images/night.png',
     'أحاديث': 'assets/images/day.png',
     'القرأن الكريم': 'assets/images/quran_kareem.png',
-    'قصص الأنبياء': 'assets/images/Component 2.png',
+    'اسماءالله الحسنى': 'assets/images/Component 2.png',
     'تواصل معنا': 'assets/images/contact_us.png',
     'أدعية': 'assets/images/Component 3.png',
   };
@@ -33,7 +33,9 @@ class MenuGridViewWidget extends StatelessWidget {
               ? Navigator.pushNamed(context, hadithHomeScreen)
               : index == 2
                   ? Navigator.pushNamed(context, quranKareemScreen)
-                  : null,
+                  : index == 3
+                      ? Navigator.pushNamed(context, asmaAlahScreen)
+                      : null,
         ),
       ),
     );
