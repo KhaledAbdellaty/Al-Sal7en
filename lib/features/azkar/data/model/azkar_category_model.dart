@@ -1,5 +1,5 @@
 import 'package:untitled/features/azkar/data/model/azkar_model.dart';
-import 'package:untitled/features/azkar/domain/entity/azkar.dart';
+
 import 'package:untitled/features/azkar/domain/entity/azkar_category.dart';
 
 class AzkarCategoryModel extends AzkarCategory{

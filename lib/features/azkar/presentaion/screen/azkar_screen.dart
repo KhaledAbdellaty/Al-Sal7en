@@ -21,7 +21,11 @@ class AzkarScreen extends StatelessWidget {
               children: [
                 Expanded(child: Text(azkar[index].arabicText ,textDirection: TextDirection.rtl,)),
             
-                CircleAvatar(child:Text("${azkar[index].repeat}"),)
+
+                CircleAvatar(child:Text("${azkar[index].repeat}"),),
+
+                CircleAvatar(child:Text("${azkar[index].repeat}"),),
+   
               ],
             ),
             SizedBox(height: 30,)
