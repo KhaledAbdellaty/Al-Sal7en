@@ -29,13 +29,15 @@ class MenuGridViewWidget extends StatelessWidget {
         itemBuilder: (context, index) => MenuContainerGridView(
           backGroundAsset: ss.values.elementAt(index),
           title: ss.keys.elementAt(index),
-          onTap: () => index == 1
-              ? Navigator.pushNamed(context, hadithHomeScreen)
-              : index == 2
-                  ? Navigator.pushNamed(context, quranKareemScreen)
-                  : index == 3
-                      ? Navigator.pushNamed(context, asmaAlahScreen)
-                      : null,
+          onTap: () => index == 0
+              ? Navigator.pushNamed(context, azkarScreen)
+              : index == 1
+                  ? Navigator.pushNamed(context, hadithHomeScreen)
+                  : index == 2
+                      ? Navigator.pushNamed(context, quranKareemScreen)
+                      : index == 3
+                          ? Navigator.pushNamed(context, asmaAlahScreen)
+                          : null,
         ),
       ),
     );

@@ -14,6 +14,8 @@ import 'package:untitled/home/features/quran_kareem/presentation/quran.dart';
 import 'package:untitled/home/features/quran_kareem/presentation/screens/layout_screen.dart';
 import 'package:untitled/home/presentation/screens/home_screen.dart';
 
+import '../home/features/azkar/presentaion/cubit/azkar_cubit.dart';
+import '../home/features/azkar/presentaion/screen/azkar_category_screen.dart';
 import '../home/features/hadeth/presentation/bloc/chapter/chapter_cubit.dart';
 import '../home/features/hadeth/presentation/bloc/hadith/hadith_cubit.dart';
 import '../home/features/hadeth/presentation/bloc/search/search_cubit.dart';
@@ -85,6 +87,12 @@ class AppRoute {
             builder: ((context) => BlocProvider(
                   create: (context) => inj<AsmaAllahCubit>()..getAsmaAllah(),
                   child: AsmaAllahScreen(),
+                )));
+                case azkarScreen:
+        return MaterialPageRoute(
+            builder: ((context) => BlocProvider(
+                  create: (context) => inj<AzkarCubit>()..getAzkar(),
+                  child: AzkarCategoryScreen(),
                 )));
     }
   }
