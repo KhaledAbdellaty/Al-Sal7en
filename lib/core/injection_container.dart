@@ -13,6 +13,11 @@ import '../home/features/asma_alah/data/data_surc/remot_data_surs.dart';
 import '../home/features/asma_alah/domen/asma_repo/asma_allah_repo.dart';
 import '../home/features/asma_alah/domen/use_cases/get_asma_allah_use_case.dart';
 import '../home/features/asma_alah/prisntion/bloc/asma_allah/asma_allah_cubit.dart';
+import '../home/features/azkar/data/data_source/local_data_source.dart';
+import '../home/features/azkar/data/repositories/azkar_repo_imp.dart';
+import '../home/features/azkar/domain/repositories/azkar_repo.dart';
+import '../home/features/azkar/domain/uses_case/azkar_use_case.dart';
+import '../home/features/azkar/presentaion/cubit/azkar_cubit.dart';
 import '../home/features/hadeth/data/data_resources/remot_date_sorc.dart';
 import '../home/features/hadeth/data/hadith_rep_imp/hadith_book_rep_imp.dart';
 import '../home/features/hadeth/domain/hadith_rep/hadith_book_rep.dart';
@@ -99,4 +104,17 @@ Future<void> init() async {
 // External //
 
   inj.registerLazySingleton(() => InternetConnectionChecker());
+  ////////////////////////////
+  
+  inj.registerFactory(() => AzkarCubit(azkarUseCase: inj()));
+
+
+// usecase
+inj.registerLazySingleton(() => AzkarUseCase(inj()));
+
+//repository
+inj.registerLazySingleton<AzkarRepo>(() => AzkarRepoImp(inj()));
+
+//data source
+inj.registerLazySingleton<AzkarDataSource>(() => AzkarLocalData());
 }

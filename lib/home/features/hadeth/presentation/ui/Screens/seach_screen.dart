@@ -36,6 +36,10 @@ class SearchHadithScreen extends StatelessWidget {
     return TextFormField(
       textAlign: TextAlign.end,
       controller: BlocProvider.of<SearchCubit>(context).vlaueSearch,
+      onFieldSubmitted: (value) {
+        BlocProvider.of<SearchCubit>(context).date.clear();
+        BlocProvider.of<SearchCubit>(context).gitValueSearch();
+      },
       decoration: InputDecoration(
         hintText: "نص الحديث",
         prefixIcon: IconButton(
