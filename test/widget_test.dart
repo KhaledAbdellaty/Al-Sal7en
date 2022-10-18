@@ -13,13 +13,11 @@ import 'package:untitled/core/app_route.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-<<<<<<< HEAD
-    await tester.pumpWidget( MyApp());
-=======
+
     await tester.pumpWidget(MyApp(
       appRoute: AppRoute(),
     ));
->>>>>>> b2e2a6c1de38201dafea3382e88ef8df16779286
+
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
